@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prensa Escrita — Estudio Jurídico INA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF7F0;
+    --panel:#F3EAD8;
+    --ink:#241A15;
+    --muted:#6E6255;
+    --red:#7C1F2A;
+    --red-deep:#4A1119;
+    --gold:#AD8636;
+    --gold-light:#DEC07E;
+    --line:#E4D6BC;
+    --line-on-dark:rgba(222,192,126,.28);
+    --max:1180px;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:.001ms !important; transition-duration:.001ms !important;} }
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Work Sans', sans-serif; font-size:16px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Fraunces', serif; margin:0; color:var(--ink); font-weight:600; letter-spacing:-.01em;}
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  ul{margin:0; padding:0; list-style:none;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+  section{padding:104px 0;}
+  :focus-visible{outline:2px solid var(--red); outline-offset:3px;}
+
+  .folio{
+    display:inline-flex; align-items:center; gap:12px;
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; font-weight:600;
+    color:var(--red); letter-spacing:.14em; text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .folio::before{content:"§"; font-family:'Fraunces',serif; font-size:15px; font-weight:700;}
+  .folio.on-dark{color:var(--gold-light);}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:9px;
+    padding:15px 27px; font-weight:600; font-size:14.5px; font-family:'Work Sans',sans-serif;
+    border-radius:var(--radius); cursor:pointer; border:1.5px solid transparent;
+    transition:transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--red); color:var(--paper); border-color:var(--red);}
+  .btn-primary:hover{background:var(--red-deep); border-color:var(--red-deep);}
+  .btn-ghost{border-color:var(--ink); color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink); color:var(--paper);}
+  .btn-ghost.on-dark{border-color:var(--gold-light); color:var(--gold-light);}
+  .btn-ghost.on-dark:hover{background:var(--gold-light); color:var(--red-deep);}
+  .btn svg{width:16px; height:16px;}
+
+  .arcs{position:absolute; pointer-events:none;}
+  .arcs svg{display:block;}
+
+  .topbar{background:var(--red-deep); color:#E9D9C3; font-size:13px;}
+  .topbar .wrap{display:flex; justify-content:space-between; align-items:center; padding:10px 32px; gap:12px; flex-wrap:wrap;}
+  .topbar .contacts{display:flex; gap:26px; flex-wrap:wrap; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.02em;}
+  .topbar a:hover{color:var(--gold-light);}
+  .topbar .social{display:flex; gap:18px;}
+  .topbar .social svg{width:15px; height:15px;}
+
+  header{background:var(--paper); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:80;}
+  .nav{
+    display:flex; align-items:center; justify-content:space-between; max-width:var(--max); margin:0 auto; gap:24px;
+    padding:18px 32px; transition:padding .2s ease;
+  }
+  .brand{display:flex; align-items:center; gap:13px;}
+  .brand .seal{width:44px; height:44px; flex:none; transition:width .2s ease, height .2s ease;}
+  .brand .name{font-family:'Fraunces', serif; font-weight:700; font-size:19px; line-height:1.2; color:var(--red);}
+  .brand .name small{display:block; font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:10px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; margin-top:2px; transition:opacity .2s ease, max-height .2s ease;}
+
+  header.is-scrolled .nav{padding:10px 32px;}
+  header.is-scrolled .brand .seal{width:34px; height:34px;}
+  header.is-scrolled .brand .name small{opacity:0; max-height:0; margin-top:0; overflow:hidden;}
+
+  nav.links{display:flex; gap:6px; font-size:14.5px; font-weight:500; align-items:center;}
+  nav.links > a, .has-sub > button{
+    padding:10px 14px; border-radius:var(--radius); color:var(--ink); background:none; border:none;
+    font:inherit; cursor:pointer; display:inline-flex; align-items:center; gap:5px;
+    transition:background .15s, color .15s;
+  }
+  nav.links > a:hover, .has-sub > button:hover{background:var(--panel); color:var(--red);}
+  nav.links > a[aria-current="page"]{background:var(--panel); color:var(--red);}
+  .has-sub{position:relative;}
+  .has-sub > button svg{width:11px; height:11px; transition:transform .15s;}
+  .has-sub:hover > button svg{transform:rotate(180deg);}
+  .submenu{
+    position:absolute; top:calc(100% + 6px); left:0; background:var(--paper);
+    border:1px solid var(--line); border-radius:var(--radius); padding:8px; min-width:230px;
+    box-shadow:0 18px 36px rgba(36,26,21,.14);
+    opacity:0; visibility:hidden; transform:translateY(4px);
+    transition:opacity .15s, transform .15s, visibility .15s;
+  }
+  .has-sub:hover .submenu, .has-sub:focus-within .submenu{opacity:1; visibility:visible; transform:translateY(0);}
+  .submenu a{display:block; padding:10px 14px; font-size:14px; border-radius:var(--radius);}
+  .submenu a:hover{background:var(--panel); color:var(--red);}
+  .submenu a[aria-current="page"]{background:var(--panel); color:var(--red);}
+  .nav-right{display:flex; align-items:center; gap:16px;}
+  .nav-phone{font-family:'IBM Plex Mono',monospace; font-size:13.5px; font-weight:600; color:var(--ink); display:flex; align-items:center; gap:8px;}
+  .nav-phone svg{width:15px; height:15px; color:var(--red);}
+  .burger{display:none; background:none; border:1.5px solid var(--ink); border-radius:var(--radius); width:42px; height:42px; align-items:center; justify-content:center; cursor:pointer;}
+  .burger svg{width:19px; height:19px;}
+  #mnav-toggle{display:none;}
+  .mobile-menu{display:none;}
+
+  @media (max-width:980px){
+    .topbar .contacts a:nth-child(2){display:none;}
+    nav.links{display:none;}
+    .nav-phone{display:none;}
+    .burger{display:flex;}
+    .mobile-menu{
+      position:fixed; inset:0; background:var(--paper); z-index:100;
+      padding:20px 24px; overflow-y:auto;
+    }
+    #mnav-toggle:checked ~ .mobile-menu{display:block;}
+    .mobile-menu .mm-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:34px;}
+    .mobile-menu a{display:block; font-family:'Fraunces',serif; font-size:24px; padding:14px 0; border-bottom:1px solid var(--line); color:var(--ink);}
+    .mobile-menu .mm-sub{padding-left:16px;}
+    .mobile-menu .mm-sub a{font-family:'Work Sans',sans-serif; font-size:16px; padding:10px 0; border:none; color:var(--muted);}
+    .mobile-menu .mm-cta{margin-top:28px; display:flex; flex-direction:column; gap:12px;}
+  }
+
+  .pagehero{padding:56px 0 72px; position:relative; overflow:hidden; border-bottom:1px solid var(--line);}
+  .pagehero .arcs{top:-160px; right:-180px; opacity:.5;}
+  .pagehero .crumb{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); margin-bottom:20px; display:block;}
+  .pagehero .crumb a:hover{color:var(--red);}
+  .pagehero h1{font-size:clamp(32px,4.6vw,52px); line-height:1.08; max-width:18ch; margin-bottom:22px;}
+  .pagehero h1 em{font-style:normal; color:var(--red); font-weight:700;}
+  .pagehero .lede{font-size:17.5px; color:var(--muted); max-width:58ch;}
+
+  .head{max-width:640px; margin-bottom:56px;}
+  .head.center{margin-left:auto; margin-right:auto; text-align:center;}
+  .head.center .folio{justify-content:center;}
+  .head h2{font-size:clamp(28px,3.2vw,40px); line-height:1.15;}
+  .head p{color:var(--muted); font-size:16.5px; margin-top:16px;}
+
+  /* -- archive: lead clip + grid of clips -- */
+  .archive{background:var(--paper);}
+  .clip-lead{
+    display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--line); background:var(--panel);
+    margin-bottom:48px; overflow:hidden;
+  }
+  .clip-lead .cl-meta{padding:44px; display:flex; flex-direction:column; justify-content:center;}
+  .clip-lead .cl-side{background:var(--red-deep); padding:44px; display:flex; flex-direction:column; justify-content:center; position:relative; overflow:hidden;}
+  .clip-lead .cl-side .arcs{top:-90px; right:-110px; opacity:.4;}
+  .clip-lead .outlet{font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; color:var(--red); letter-spacing:.08em; text-transform:uppercase; margin-bottom:16px; display:block;}
+  .clip-lead .cl-side .outlet{color:var(--gold-light);}
+  .clip-lead .date{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); margin-bottom:14px; display:block;}
+  .clip-lead h3{font-size:clamp(21px,2.4vw,27px); line-height:1.32; margin-bottom:16px;}
+  .clip-lead .cl-side h3{color:var(--paper);}
+  .clip-lead p{color:var(--muted); font-size:14.5px; margin-bottom:22px;}
+  .clip-lead .cl-side p{color:#D9C7AC;}
+  .clip-lead .go{font-size:13px; font-weight:600; color:var(--red); display:inline-flex; align-items:center; gap:6px;}
+  .clip-lead .cl-side .go{color:var(--gold-light);}
+  .clip-lead .go svg{width:13px; height:13px; transition:transform .15s;}
+  @media (max-width:820px){.clip-lead{grid-template-columns:1fr;}}
+
+  .clip-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .clip{background:var(--paper); padding:32px 30px; display:flex; flex-direction:column; transition:background .15s;}
+  .clip:hover{background:var(--panel);}
+  .clip .outlet{font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--gold); letter-spacing:.07em; text-transform:uppercase; margin-bottom:12px; display:block;}
+  .clip .date{font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--muted); margin-bottom:14px; display:block;}
+  .clip h4{font-size:16.5px; font-weight:600; font-family:'Fraunces',serif; line-height:1.38; color:var(--ink); margin-bottom:12px;}
+  .clip p{font-size:13.5px; color:var(--muted); margin-bottom:18px; flex:1;}
+  .clip .go{font-size:12.5px; font-weight:600; color:var(--red); display:inline-flex; align-items:center; gap:6px; margin-top:auto;}
+  .clip .go svg{width:12px; height:12px; transition:transform .15s;}
+  .clip:hover .go svg, .clip-lead a:hover .go svg{transform:translateX(3px);}
+  @media (max-width:820px){.clip-grid{grid-template-columns:1fr;}}
+
+  .more-note{
+    display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+    margin-top:40px; padding:22px 28px; background:var(--panel); border:1px solid var(--line);
+    font-size:13.5px; color:var(--muted);
+  }
+
+  /* -- year tabs -- */
+  .year-tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:48px; border-bottom:1px solid var(--line); padding-bottom:0;}
+  .year-tab{
+    font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; letter-spacing:.04em;
+    padding:12px 20px; border:none; background:none; color:var(--muted); cursor:pointer;
+    border-bottom:2.5px solid transparent; margin-bottom:-1px; transition:color .15s, border-color .15s;
+  }
+  .year-tab:hover{color:var(--red);}
+  .year-tab.active{color:var(--red); border-bottom-color:var(--red);}
+  .year-tab .count{font-size:11px; color:var(--gold); margin-left:4px;}
+  .year-panel{display:none;}
+  .year-panel.active{display:block;}
+  .year-panel .clip-grid{margin-top:0;}
+  .clip-grid.compact{grid-template-columns:repeat(3,1fr);}
+  .clip-grid.compact .clip{padding:26px 24px;}
+  .clip-grid.compact h4{font-size:15px;}
+  @media (max-width:980px){.clip-grid.compact{grid-template-columns:1fr 1fr;}}
+  @media (max-width:600px){.clip-grid.compact{grid-template-columns:1fr;}}
+
+  .cta-band{background:var(--red-deep); color:#EFDFC8; position:relative; overflow:hidden; text-align:center;}
+  .cta-band .arcs{top:-120px; left:50%; transform:translateX(-50%); opacity:.35;}
+  .cta-band h2{color:var(--paper); font-size:clamp(26px,3.4vw,38px); max-width:22ch; margin:0 auto;}
+  .cta-band p{color:#D9C7AC; font-size:15.5px; max-width:48ch; margin:16px auto 32px;}
+  .cta-band .ctas{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; position:relative;}
+
+  footer{background:#180A0C; color:#B9A791; padding:60px 0 26px; font-size:14px;}
+  .foot-top{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:40px; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,.08);}
+  .foot-brand{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
+  .foot-brand .seal{width:36px; height:36px;}
+  .foot-brand span{font-family:'Fraunces', serif; color:var(--paper); font-size:19px; font-weight:700;}
+  .foot-col h5{font-size:11.5px; color:var(--gold-light); font-weight:600; margin-bottom:14px; font-family:'IBM Plex Mono',monospace; letter-spacing:.08em; text-transform:uppercase;}
+  .foot-col a{display:block; color:#B9A791; margin-bottom:10px; transition:color .15s;}
+  .foot-col a:hover{color:var(--paper);}
+  .foot-bottom{padding-top:22px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px; color:#8A7A67;}
+  @media (max-width:820px){.foot-top{grid-template-columns:1fr 1fr;}}
+
+  .wa-float{
+    position:fixed; bottom:26px; right:26px; width:58px; height:58px; border-radius:50%;
+    background:#25D366; display:flex; align-items:center; justify-content:center; z-index:90;
+    box-shadow:0 10px 26px rgba(0,0,0,.22);
+  }
+  .wa-float svg{width:28px; height:28px; fill:#fff;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="contacts">
+      <a href="tel:+541149640507">Tel. (011) 4964-0507</a>
+      <a href="tel:+5491122778847">WhatsApp +54 9 11 2277-8847</a>
+      <a href="mailto:estudioina@gmail.com">estudioina@gmail.com</a>
+    </div>
+    <div class="social">
+      <a href="https://www.instagram.com/ina_estudio/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+      <a href="https://www.facebook.com/EstudioJuridicoINA/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 8h2V4h-2a4 4 0 0 0-4 4v2H9v4h2v8h4v-8h2.5l.5-4H15V8z"/></svg></a>
+      <a href="https://www.youtube.com/channel/UCqBruPlW88hfTJI73VK5akA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="6" width="19" height="12" rx="3"/><path d="M11 10l4 2-4 2z" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="https://claude.ai/artifact/WQEQKzrdroQFUnxqcTZnap#inicio">
+      <svg class="seal" viewBox="0 0 200 200" fill="none" aria-label="Estudio INA">
+        <g stroke="#FBDE58" stroke-linecap="round">
+          <circle cx="100" cy="100" r="92" stroke-width="7" stroke-dasharray="398.21 179.84" transform="rotate(146 100 100)"/>
+          <circle cx="100" cy="100" r="78" stroke-width="7" stroke-dasharray="337.62 152.47" transform="rotate(146 100 100)"/>
+          <circle cx="100" cy="100" r="64" stroke-width="7" stroke-dasharray="277.02 125.11" transform="rotate(146 100 100)"/>
+          <circle cx="100" cy="100" r="50" stroke-width="7" stroke-dasharray="216.42 97.74" transform="rotate(146 100 100)"/>
+          <circle cx="100" cy="100" r="36" stroke-width="7" stroke-dasharray="155.82 70.37" transform="rotate(146 100 100)"/>
+        </g>
+        <text x="100" y="176" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="48" letter-spacing="1" fill="#B0141C">INA</text>
+      </svg>
+      <span class="name">Estudio Jurídico INA<small>Penal &amp; Migratorio · Bs. As.</small></span>
+    </a>
+
+    <nav class="links" aria-label="Principal">
+      <a href="https://claude.ai/artifact/WQEQKzrdroQFUnxqcTZnap#inicio">Inicio</a>
+      <div class="has-sub">
+        <button type="button" aria-haspopup="true">Áreas de especialidad <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="submenu">
+          <a href="https://claude.ai/artifact/RgbfvGP2fbWSH9vMsFHxik">Derecho Penal</a>
+          <a href="https://claude.ai/artifact/8RC1Jgt3n6tC5d3a9FwgM2">Migratorio Argentino</a>
+          <a href="https://claude.ai/artifact/GwH3h3skgN984B9N4A7jQY">Migratorio Estados Unidos</a>
+        </div>
+      </div>
+      <a href="https://claude.ai/artifact/STnBMJ6PBT6D6e2eNiujvw">Sobre nosotros</a>
+      <div class="has-sub">
+        <button type="button" aria-haspopup="true">Prensa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="submenu">
+          <a href="#top" aria-current="page">Prensa escrita</a>
+          <a href="https://claude.ai/artifact/TCuNnbEd3t199d7sKXHZSU">Prensa audiovisual</a>
+        </div>
+      </div>
+      <a href="https://claude.ai/artifact/L6DuxAPyjeozPcwwr8PY62">Contacto</a>
+    </nav>
+
+    <div class="nav-right">
+      <a class="nav-phone" href="tel:+5491122778847">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.7a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.8 2z"/></svg>
+        2277-8847
+      </a>
+      <a class="btn btn-primary" href="https://claude.ai/artifact/WQEQKzrdroQFUnxqcTZnap#contacto">Consulta gratuita</a>
+      <input type="checkbox" id="mnav-toggle">
+      <label class="burger" for="mnav-toggle" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </label>
+      <div class="mobile-menu">
+        <div class="mm-top">
+          <strong style="font-family:'Fraunces',serif; font-size:20px; color:var(--red);">Estudio INA</strong>
+          <label class="burger" for="mnav-toggle" aria-label="Cerrar menú">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </label>
+        </div>
+        <a href="https://claude.ai/artifact/WQEQKzrdroQFUnxqcTZnap#inicio">Inicio</a>
+        <a href="https://claude.ai/artifact/WQEQKzrdroQFUnxqcTZnap#areas">Áreas de especialidad</a>
+        <div class="mm-sub">
+          <a href="https://claude.ai/artifact/RgbfvGP2fbWSH9vMsFHxik">— Derecho Penal</a>
+          <a href="https://claude.ai/artifact/8RC1Jgt3n6tC5d3a9FwgM2">— Migratorio Argentino</a>
+          <a href="https://claude.ai/artifact/GwH3h3skgN984B9N4A7jQY">— Migratorio EE.UU.</a>
+        </div>
+        <a href="https://claude.ai/artifact/STnBMJ6PBT6D6e2eNiujvw">Sobre nosotros</a>
+          <a href="#top">Prensa escrita</a>
+        <a href="https://claude.ai/artifact/TCuNnbEd3t199d7sKXHZSU">Prensa audiovisual</a>
+        <a href="https://claude.ai/artifact/L6DuxAPyjeozPcwwr8PY62">Contacto</a>
+        <div class="mm-cta">
+          <a class="btn btn-primary" href="https://claude.ai/artifact/WQEQKzrdroQFUnxqcTZnap#contacto">Consulta gratuita</a>
+          <a class="btn btn-ghost" href="https://api.whatsapp.com/send/?phone=5491122778847&text=Hola+Estudio+INA%2C+necesito+asesoramiento" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="pagehero" id="top">
+  <span class="arcs"><svg width="480" height="480" viewBox="0 0 480 480" fill="none"><circle cx="240" cy="240" r="140" stroke="#AD8636" stroke-width="1.2"/><circle cx="240" cy="240" r="180" stroke="#AD8636" stroke-width="1"/><circle cx="240" cy="240" r="220" stroke="#AD8636" stroke-width=".8"/></svg></span>
+  <div class="wrap">
+    <span class="crumb"><a href="https://claude.ai/artifact/WQEQKzrdroQFUnxqcTZnap#inicio">Inicio</a> / Prensa / Prensa escrita</span>
+    <span class="folio">Prensa escrita</span>
+    <h1>Columnas y notas de opinión de la <em>Dra. Déborah Huczek</em> en medios nacionales.</h1>
+    <p class="lede">Cada nota lleva al artículo original, publicado en Infobae, La Nación, Clarín y otros medios, donde la directora del estudio analiza justicia, infancia y falsas denuncias.</p>
+  </div>
+</section>
+
+<section class="archive">
+  <div class="wrap">
+    <div class="year-tabs" role="tablist" aria-label="Filtrar por año">
+      <button class="year-tab active" data-year="2026" type="button">2026 <span class="count">(12)</span></button>
+      <button class="year-tab" data-year="2025" type="button">2025 <span class="count">(5)</span></button>
+      <button class="year-tab" data-year="2024" type="button">2024 <span class="count">(4)</span></button>
+      <button class="year-tab" data-year="2023" type="button">2023 <span class="count">(5)</span></button>
+      <button class="year-tab" data-year="2022" type="button">2022 <span class="count">(18)</span></button>
+      <button class="year-tab" data-year="2021" type="button">2021 <span class="count">(6)</span></button>
+    </div>
+
+    <div class="year-panel active" data-panel="2026">
+
+    <a class="clip-lead" href="https://www.infobae.com/opinion/2026/08/18/inmigracion-y-expresiones-de-odio/" target="_blank" rel="noopener">
+      <div class="cl-meta">
+        <span class="outlet">Infobae — Opinión</span>
+        <span class="date">18 de agosto de 2026</span>
+        <h3>Inmigración y expresiones de odio: el falso patriotismo que pone en riesgo la Constitución</h3>
+        <p>Una columna sobre el discurso de odio hacia la inmigración y los riesgos que ese relato representa para el orden constitucional.</p>
+        <span class="go">Leer la columna en Infobae <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="cl-side">
+        <span class="arcs"><svg width="300" height="300" viewBox="0 0 300 300" fill="none"><circle cx="150" cy="150" r="90" stroke="#DEC07E" stroke-width="1"/><circle cx="150" cy="150" r="115" stroke="#DEC07E" stroke-width=".8"/></svg></span>
+        <span class="outlet">Nota destacada</span>
+        <h3>«Hoy quiero compartirles mi nueva columna de opinión publicada en Infobae.»</h3>
+        <p>Dra. Déborah Huczek, directora del estudio.</p>
+      </div>
+    </a>
+
+    <div class="clip-grid">
+      <a class="clip" href="https://www.lanacion.com.ar/opinion/infancias-sin-rehenes-una-deuda-pendiente-de-la-justicia-argentina-nid29072026/" target="_blank" rel="noopener">
+        <span class="outlet">La Nación — Opinión</span>
+        <span class="date">29 de julio de 2026</span>
+        <h4>Infancias sin rehenes: una deuda pendiente de la Justicia argentina</h4>
+        <p>En los conflictos familiares, los hijos suelen ser las primeras víctimas. Por qué es urgente que la Justicia los deje de usar como rehenes del conflicto adulto.</p>
+        <span class="go">Leer la nota en La Nación <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="clip" href="https://abogados.com.ar/cuando-el-relato-reemplaza-a-la-prueba-el-debate-detras-del-caso-darthes/39273" target="_blank" rel="noopener">
+        <span class="outlet">abogados.com.ar</span>
+        <span class="date">3 de junio de 2026</span>
+        <h4>Cuando el relato reemplaza a la prueba: el debate detrás del caso Darthés</h4>
+        <p>A partir de la condena confirmada contra Juan Darthés, un análisis sobre el valor de la prueba frente al relato en los procesos penales.</p>
+        <span class="go">Leer la nota en abogados.com.ar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="clip" href="https://www.lanacion.com.ar/opinion/columnistas/el-dano-de-la-mentira-sin-condena-nid2249881/" target="_blank" rel="noopener">
+        <span class="outlet">La Nación — Columnistas</span>
+        <span class="date">13 de mayo de 2026</span>
+        <h4>El daño de la mentira sin condena</h4>
+        <p>Sobre las consecuencias que carga quien enfrenta una denuncia falsa, incluso cuando la Justicia termina por sobreseerlo.</p>
+        <span class="go">Leer la nota en La Nación <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="clip" href="https://estudioina.com.ar/prision-preventiva-entrevista-a-la-dra-deborah-huczek/" target="_blank" rel="noopener">
+        <span class="outlet">Estudio INA — Entrevista</span>
+        <span class="date">30 de abril de 2026</span>
+        <h4>Prisión preventiva — Entrevista a la Dra. Déborah Huczek</h4>
+        <p>La directora del estudio explica los límites y el uso de la prisión preventiva en el proceso penal argentino.</p>
+        <span class="go">Ver la entrevista completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="clip" href="https://www.clarin.com/opinion/caso-alexis-doble-vara-cuestiones-genero_0_xdbdlcR6Fb.html" target="_blank" rel="noopener">
+        <span class="outlet">Clarín — Opinión</span>
+        <span class="date">30 de abril de 2026</span>
+        <h4>El caso de Alexis y la "doble vara" por cuestiones de género</h4>
+        <p>Un análisis sobre cómo el género de las partes puede alterar el trato judicial y mediático de un mismo hecho.</p>
+        <span class="go">Leer la nota en Clarín <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="clip" href="https://estudioina.com.ar/falsas-denuncias-en-el-proceso-penal-la-lucha-por-la-verdad-que-muchos-evitan-dar/" target="_blank" rel="noopener">
+        <span class="outlet">Estudio INA</span>
+        <span class="date">24 de abril de 2026</span>
+        <h4>Falsas denuncias en el proceso penal: la lucha por la verdad que muchos evitan dar</h4>
+        <p>Durante años, hablar de falsas denuncias en el ámbito penal fue incómodo. Por qué es necesario dar ese debate.</p>
+        <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="clip" href="https://www.lanacion.com.ar/opinion/las-falsas-denuncias-por-abuso-estan-subregistradas-y-exigen-un-sistema-judicial-mas-riguroso-nid11042026/" target="_blank" rel="noopener">
+        <span class="outlet">La Nación — Opinión</span>
+        <span class="date">23 de abril de 2026</span>
+        <h4>Las falsas denuncias por abuso están subregistradas y exigen un sistema judicial más riguroso</h4>
+        <p>Durante décadas, el sistema judicial se apoyó en una lógica que dificulta detectar y registrar las denuncias falsas.</p>
+        <span class="go">Leer la nota en La Nación <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="clip" href="https://estudioina.com.ar/los-casos-de-abuso-sexual-ponen-en-jaque-a-los-abogados-y-les-exigen-mayor-capacitacion/" target="_blank" rel="noopener">
+        <span class="outlet">Estudio INA</span>
+        <span class="date">23 de abril de 2026</span>
+        <h4>Los casos de abuso sexual ponen en jaque a los abogados y les exigen mayor capacitación</h4>
+        <p>En los casos de abuso sexual infantil, que vemos a diario en las noticias, la sociedad exige respuestas cada vez más especializadas.</p>
+        <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="clip" href="https://www.infobae.com/judiciales/2026/01/26/absolvieron-a-un-hombre-acusado-de-abuso-contra-su-hija-tras-un-juicio-oral-en-lomas-de-zamora/" target="_blank" rel="noopener">
+        <span class="outlet">Infobae — Judiciales</span>
+        <span class="date">26 de enero de 2026</span>
+        <h4>Absolvieron a un hombre acusado de abuso contra su hija tras un juicio oral en Lomas de Zamora</h4>
+        <p>La investigación derivó en la interrupción total del vínculo entre el padre y la menor desde 2023, hasta la absolución dictada tras el juicio oral.</p>
+        <span class="go">Leer la nota en Infobae <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="clip" href="https://norteenlinea.com/lanzan-una-mentoria-intensiva-de-litigacion-en-casos-de-abuso-sexual-infantil-para-abogados-y-peritos/" target="_blank" rel="noopener">
+        <span class="outlet">Norte en Línea</span>
+        <span class="date">26 de febrero de 2026</span>
+        <h4>Lanzan una mentoría intensiva de litigación en casos de abuso sexual infantil para abogados y peritos</h4>
+        <p>Una capacitación especializada para profesionales que litigan en casos de abuso sexual infantil, con foco en técnicas de litigación oral.</p>
+        <span class="go">Leer la nota en Norte en Línea <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="clip" href="https://www.diariojudicial.com/news-102597-tres-anos-sin-ver-a-su-hija-por-una-falsa-denuncia" target="_blank" rel="noopener">
+        <span class="outlet">Diario Judicial</span>
+        <span class="date">23 de enero de 2026</span>
+        <h4>Tres años sin ver a su hija por una falsa denuncia</h4>
+        <p>El Tribunal Oral N.º 3 de Lomas de Zamora absolvió a un hombre acusado por su ex pareja, tras tres años sin poder ver a su hija.</p>
+        <span class="go">Leer la nota en Diario Judicial <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+
+    </div><!-- /panel 2026 -->
+
+    <div class="year-panel" data-panel="2025">
+      <div class="clip-grid compact">
+
+        <a class="clip" href="https://estudioina.com.ar/ciudadania-a-cambio-de-inversion/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">17 de junio de 2025</span>
+          <h4>¿Ciudadanía a cambio de inversión?</h4>
+          <p>Un análisis sobre los programas de ciudadanía por inversión y su lugar en el derecho migratorio comparado.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/de-apatridas-a-ciudadanos-una-batalla-legal-que-devolvio-identidad-y-derechos/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">15 de mayo de 2025</span>
+          <h4>De apátridas a ciudadanos: una batalla legal que devolvió identidad y derechos</h4>
+          <p>El caso que conmovió a la comunidad internacional: cientos de ciudadanos extranjeros, en su mayoría de origen chino, recuperaron su identidad legal.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/from-stateless-to-citizens-a-legal-battle-that-restored-identity-and-rights/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA (EN)</span>
+          <span class="date">15 de mayo de 2025</span>
+          <h4>From Stateless to Citizens: A Legal Battle that Restored Identity and Rights</h4>
+          <p>Versión en inglés del caso que devolvió identidad y derechos a cientos de ciudadanos extranjeros en Argentina.</p>
+          <span class="go">Read the full article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/los-antecedentes-penales/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">6 de mayo de 2025</span>
+          <h4>Los antecedentes penales</h4>
+          <p>Con cierta frecuencia se reciben en el estudio consultas de personas angustiadas por sus antecedentes penales. Cómo funcionan y cuándo caducan.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/analisis-ley-27786-organizaciones-criminales/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">18 de marzo de 2025</span>
+          <h4>Análisis general de la Ley 27786 "Organizaciones Criminales"</h4>
+          <p>El Dr. Marcelo Madeo analiza en profundidad la nueva normativa, que redefine el concepto de organización criminal y amplía facultades de investigación.</p>
+          <span class="go">Leer el análisis completo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="year-panel" data-panel="2024">
+      <div class="clip-grid compact">
+
+        <a class="clip" href="https://estudioina.com.ar/juicio-por-jurados-2/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">25 de enero de 2024</span>
+          <h4>Juicio por jurados</h4>
+          <p>El Estado argentino tiene una deuda pendiente: la implementación plena del juicio por jurados en todo el país.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/como-se-puede-denunciar-un-delito/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">12 de abril de 2024</span>
+          <h4>¿Cómo se puede denunciar un delito?</h4>
+          <p>Los delitos pueden ocurrir en cualquier momento de la vida: una guía sobre cómo y dónde radicar una denuncia penal.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/10-situaciones-en-las-cuales-puedes-necesitar-un-abogado/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">12 de abril de 2024</span>
+          <h4>10 situaciones en las cuales puedes necesitar un abogado</h4>
+          <p>Un repaso de los momentos de la vida en los que conviene contar con asesoramiento legal profesional.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/juicio-por-jurados/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">12 de abril de 2024</span>
+          <h4>Juicio por jurados</h4>
+          <p>Hablemos de algo serio: por qué el juicio por jurados sigue siendo una deuda pendiente en la Argentina.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="year-panel" data-panel="2023">
+      <div class="clip-grid compact">
+
+        <a class="clip" href="https://estudioina.com.ar/10-situaciones-en-las-cuales-puedes-necesitar-un-abogado-2/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">8 de agosto de 2023</span>
+          <h4>10 situaciones en las cuales puedes necesitar un abogado</h4>
+          <p>Un repaso de los momentos de la vida en los que conviene contar con asesoramiento legal profesional.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/fallo-laboral-favorable-a-los-intereses-que-representa-el-estudio/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">25 de julio de 2023</span>
+          <h4>Fallo laboral favorable a los intereses que representa el estudio</h4>
+          <p>Un reciente fallo de primera instancia del Juzgado Nacional del Trabajo resultó favorable a los intereses representados por el estudio.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/como-se-puede-denunciar-un-delito-2/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">27 de julio de 2023</span>
+          <h4>¿Cómo se puede denunciar un delito?</h4>
+          <p>Los delitos pueden ocurrir en cualquier momento de la vida: una guía sobre cómo y dónde radicar una denuncia penal.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/que-necesito-si-quiero-vivir-en-argentina/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">19 de abril de 2023</span>
+          <h4>¿Qué necesito si quiero vivir en Argentina?</h4>
+          <p>Una guía para extranjeros que, tras visitar el país, deciden radicarse: requisitos y pasos del trámite migratorio.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/justicia-popular-vs-justicia-constitucional/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">28 de marzo de 2023</span>
+          <h4>Justicia Popular vs. Justicia Constitucional</h4>
+          <p>La justicia a merced del poder mediático: un análisis a partir del caso Báez Sosa.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="year-panel" data-panel="2022">
+      <div class="clip-grid compact">
+
+        <a class="clip" href="https://estudioina.com.ar/el-fallo-de-johnny-depp-reivindica-a-la-presuncion-de-inocencia/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">14 de junio de 2022</span>
+          <h4>El fallo de Johnny Depp reivindica a la presunción de inocencia</h4>
+          <p>El jurado falló a favor de Johnny Depp en la demanda por difamación contra su expareja, Amber Heard.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://www.diariojudicial.com/news-92153-depp-c-heard-las-tecnicas-de-litigacion-oral" target="_blank" rel="noopener">
+          <span class="outlet">Diario Judicial</span>
+          <span class="date">30 de mayo de 2022</span>
+          <h4>Depp c/ Heard: las técnicas de litigación oral</h4>
+          <p>La millonaria demanda, transmitida en vivo, ofreció varios aspectos interesantes para analizar en materia de litigación oral.</p>
+          <span class="go">Leer la nota en Diario Judicial <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/audiencias-del-seclo-por-videoconferencia/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">10 de junio de 2022</span>
+          <h4>Un sistema que llegó para quedarse: audiencias del SECLO por videoconferencia</h4>
+          <p>El Servicio de Conciliación Laboral Obligatoria dará continuidad a las audiencias virtuales.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://diario-nco.net/2022/05/04/entrevista-a-deborah-huczek-autora-del-libro-los-inmigrantes-y-el-progreso-de-la-argentina/" target="_blank" rel="noopener">
+          <span class="outlet">Diario NCO</span>
+          <span class="date">5 de mayo de 2022</span>
+          <h4>Entrevista a Déborah Huczek, autora del libro "Los inmigrantes y el progreso de la Argentina"</h4>
+          <p>La Dra. Huczek conversó sobre su obra y su mirada acerca del aporte de la inmigración al desarrollo del país.</p>
+          <span class="go">Leer la entrevista <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://www.infobae.com/opinion/2022/05/04/el-sector-privado-es-rehen-del-sistema-impositivo/" target="_blank" rel="noopener">
+          <span class="outlet">Infobae — Opinión</span>
+          <span class="date">5 de mayo de 2022</span>
+          <h4>El sector privado es rehén del sistema impositivo</h4>
+          <p>Las pymes argentinas deben soportar una carga tributaria que representa el 106% de la ganancia neta.</p>
+          <span class="go">Leer la nota en Infobae <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/se-realiza-el-censo-nacional-suspendido-por-la-pandemia-en-el-2020/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">8 de abril de 2022</span>
+          <h4>Se realiza el Censo Nacional suspendido por la pandemia en el 2020</h4>
+          <p>Luego de ser suspendido, el Censo Nacional finalmente se llevó a cabo.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://noticiasargentinas.com/sociedad/argentina-ante-la-posibilidad-de-colaborar-y-fortalecerse-nuevamente-con-la-inmigracion?output=amp" target="_blank" rel="noopener">
+          <span class="outlet">Noticias Argentinas</span>
+          <span class="date">4 de abril de 2022</span>
+          <h4>Argentina ante la posibilidad de colaborar y fortalecerse nuevamente con la inmigración</h4>
+          <p>La Argentina es un país de inmigrantes: un análisis sobre el rol histórico y actual de la inmigración.</p>
+          <span class="go">Leer la nota en Noticias Argentinas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://www.lanacion.com.ar/opinion/la-inmigracion-en-contexto-de-guerra-y-su-valor-como-recurso-para-el-pais-nid23032022/" target="_blank" rel="noopener">
+          <span class="outlet">La Nación — Opinión</span>
+          <span class="date">23 de marzo de 2022</span>
+          <h4>La inmigración en contexto de guerra y su valor como recurso para el país</h4>
+          <p>La Argentina otorgó visado temporal por razones humanitarias a los ucranianos desplazados por la guerra.</p>
+          <span class="go">Leer la nota en La Nación <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://www.baenegocios.com/economia/Nuevo-salario-minimo-vital-y-movil-de-cuanto-es-el-aumento-y-a-cuanto-se-va-en-2022-20220316-0073.html" target="_blank" rel="noopener">
+          <span class="outlet">BAE Negocios</span>
+          <span class="date">21 de marzo de 2022</span>
+          <h4>Conocé el incremento del Salario Mínimo, Vital y Móvil</h4>
+          <p>Sindicalistas y empresarios, bajo supervisión del Ministerio de Trabajo, acordaron el nuevo valor del salario mínimo.</p>
+          <span class="go">Leer la nota en BAE Negocios <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://www.perfil.com/noticias/opinion/deborah-huczek-alberto-fernandez-y-un-elogio-al-regimen-chino-que-se-contrapone-con-los-valores-democraticos-del-pueblo-argentino.phtml" target="_blank" rel="noopener">
+          <span class="outlet">Perfil — Opinión</span>
+          <span class="date">22 de febrero de 2022</span>
+          <h4>Alberto Fernández y su elogio al régimen chino</h4>
+          <p>Al rendir homenaje al fallecido Mao Zedong y elogiar al Partido Comunista, el presidente Alberto Fernández contradijo los valores democráticos argentinos.</p>
+          <span class="go">Leer la nota en Perfil <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/el-abogado-como-guerrero-y-las-tecnicas-de-litigacion-oral/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">2 de febrero de 2022</span>
+          <h4>El abogado como "guerrero" y las técnicas de litigación oral</h4>
+          <p>Un repaso de los aspectos más importantes que todo jurista debe dominar para salir airoso de una audiencia oral.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://www.perfil.com/noticias/opinion/deborah-huczek-justicia-un-mal-acuerdo-nunca-es-mejor-que-un-buen-juicio.phtml" target="_blank" rel="noopener">
+          <span class="outlet">Perfil — Opinión</span>
+          <span class="date">14 de enero de 2022</span>
+          <h4>Justicia: "Un mal acuerdo nunca es mejor que un buen juicio"</h4>
+          <p>Muchas veces el mal acuerdo se sustenta en el temor de ir a juicio: por qué esa lógica perjudica a quien tiene razón.</p>
+          <span class="go">Leer la nota en Perfil <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/nuevo-protocolo-para-contactos-estrechos-de-covid-19-autorizan-el-autotest/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">12 de enero de 2022</span>
+          <h4>Nuevo protocolo para contactos estrechos de Covid-19 — Autorizan el "autotest"</h4>
+          <p>La Ministra de Salud Carla Vizzotti anunció modificaciones en el protocolo para contactos estrechos.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/la-corte-suprema-fija-criterio-con-respecto-a-la-posibilidad-de-obtener-residencia-argentina-tras-ingreso-irregular-al-pais/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">7 de enero de 2022</span>
+          <h4>La Corte Suprema fija criterio respecto a la posibilidad de obtener residencia argentina tras ingreso irregular al país</h4>
+          <p>La Corte Suprema determinó que no todos quienes pretendan habitar el suelo argentino podrán regularizar su situación migratoria del mismo modo.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/reglamentacion-de-la-obligacion-de-disponer-espacios-de-cuidado-para-ninos-y-ninas-pequenos-en-establecimientos-laborales-grandes/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">8 de agosto de 2022</span>
+          <h4>Reglamentación de la obligación de disponer espacios de cuidado para niños y niñas en establecimientos laborales grandes</h4>
+          <p>El artículo 179 de la Ley de Contrato de Trabajo establece una obligación históricamente sin reglamentar: cómo impacta su nueva reglamentación.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/se-actualiza-el-salario-minimo-vital-y-movil-desde-agosto-a-47850/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">3 de agosto de 2022</span>
+          <h4>Se actualiza el salario mínimo, vital y móvil desde agosto a $47.850</h4>
+          <p>Conforme resolución del Consejo Nacional del Empleo, la Productividad y el Salario Mínimo, Vital y Móvil, se actualizó el monto vigente.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/nuevo-beneficio-migratorio-para-nacionales-de-la-republica-de-senegal-haiti-republica-dominicana-y-cuba/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">28 de junio de 2022</span>
+          <h4>Nuevo beneficio migratorio para nacionales de Senegal, Haití, República Dominicana y Cuba</h4>
+          <p>La Dirección Nacional de Migraciones publicó nuevas disposiciones con un beneficio migratorio específico para estas nacionalidades.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://www.zonaprop.com.ar/noticias/mercado-inmobiliario/como-llevar-adelante-la-separacion-de-bienes/" target="_blank" rel="noopener">
+          <span class="outlet">Zonaprop</span>
+          <span class="date">23 de junio de 2022</span>
+          <h4>¿Cómo llevar adelante la separación de bienes?</h4>
+          <p>Una ruptura amorosa pone en marcha toda una serie de decisiones sobre el reparto de bienes: qué establece la ley.</p>
+          <span class="go">Leer la nota en Zonaprop <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="year-panel" data-panel="2021">
+      <div class="clip-grid compact">
+
+        <a class="clip" href="https://estudioina.com.ar/se-elimina-la-prohibicion-de-despido-sin-causa-desde-el-01-01-2021/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">27 de diciembre de 2021</span>
+          <h4>Se elimina la prohibición de despido sin causa desde el 01/01/2021</h4>
+          <p>Se elimina la prohibición de despido sin causa y se mantiene la "doble indemnización" en determinados supuestos.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="http://www.lanacion.com.ar/opinion/el-juicio-por-jurados-ayuda-a-garantizar-la-imparcialidad-nid22122021/" target="_blank" rel="noopener">
+          <span class="outlet">La Nación — Opinión</span>
+          <span class="date">22 de diciembre de 2021</span>
+          <h4>El juicio por jurados ayuda a garantizar la imparcialidad</h4>
+          <p>Lo innovador de este método de juzgamiento es que otorga una participación activa a la ciudadanía en la administración de justicia.</p>
+          <span class="go">Leer la nota en La Nación <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/conoce-los-detalles-del-nuevo-pase-sanitario/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">17 de diciembre de 2021</span>
+          <h4>Conoce los detalles del nuevo pase sanitario</h4>
+          <p>El Gobierno nacional estableció que las personas mayores de 13 años deberán acreditar su esquema de vacunación completo.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://www.perfil.com/noticias/opinion/deborah-huczek-casos-juan-darthes-lucio-dupuy-hacia-una-justicia-matriarcal.phtml" target="_blank" rel="noopener">
+          <span class="outlet">Perfil — Opinión</span>
+          <span class="date">7 de diciembre de 2021</span>
+          <h4>Los casos Juan Darthés y Lucio Dupuy: ¿hacia una Justicia matriarcal?</h4>
+          <p>Ambos casos muestran cómo los magistrados, y la sociedad en general, pueden perder la imparcialidad según el género de las partes.</p>
+          <span class="go">Leer la nota en Perfil <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/condenaron-a-un-correntino-por-abusar-de-su-sobrina-desde-los-ocho-anos/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">6 de diciembre de 2021</span>
+          <h4>Condenaron a un correntino por abusar de su sobrina desde los ocho años</h4>
+          <p>El acusado, que reside en Corrientes Capital, participó del debate de manera virtual.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a class="clip" href="https://estudioina.com.ar/creativo-fallos-de-familia-para-hacer-pagar-a-un-incumplidor-alimentario/" target="_blank" rel="noopener">
+          <span class="outlet">Estudio INA</span>
+          <span class="date">30 de noviembre de 2021</span>
+          <h4>Creativo fallo de familia para hacer pagar a un incumplidor alimentario</h4>
+          <p>Un fallo judicial ordenó a la empresa de electricidad de Chivilcoy cortar el suministro a un incumplidor de cuota alimentaria.</p>
+          <span class="go">Leer la nota completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="more-note">
+      <span>Archivo construido a partir de las notas publicadas en <a href="https://estudioina.com.ar/prensa-escrita/" target="_blank" rel="noopener" style="text-decoration:underline; color:var(--red); font-weight:600;">estudioina.com.ar/prensa-escrita</a>. Ante cualquier nota nueva, avisame el título o el link y la agrego al año correspondiente.</span>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  var yearTabs = document.querySelectorAll('.year-tab');
+  var yearPanels = document.querySelectorAll('.year-panel');
+  yearTabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      yearTabs.forEach(function(t){ t.classList.remove('active'); });
+      yearPanels.forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      document.querySelector('.year-panel[data-panel="' + tab.dataset.year + '"]').classList.add('active');
+    });
+  });
+</script>
+
+<section class="cta-band">
+  <span class="arcs"><svg width="440" height="440" viewBox="0 0 440 440" fill="none"><circle cx="220" cy="220" r="130" stroke="#DEC07E" stroke-width="1"/><circle cx="220" cy="220" r="170" stroke="#DEC07E" stroke-width=".8"/></svg></span>
+  <div class="wrap">
+    <h2>¿Tu situación se parece a alguno de estos casos?</h2>
+    <p>Primera consulta sin cargo. Un abogado del estudio te responde dentro de las 24&nbsp;horas hábiles.</p>
+    <div class="ctas">
+      <a class="btn btn-primary" href="https://claude.ai/artifact/WQEQKzrdroQFUnxqcTZnap#contacto">Reservar consulta gratuita</a>
+      <a class="btn btn-ghost on-dark" href="https://api.whatsapp.com/send/?phone=5491122778847&text=Hola+Estudio+INA%2C+necesito+asesoramiento" target="_blank" rel="noopener">Hablar por WhatsApp ahora</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">
+          <svg class="seal" viewBox="0 0 200 200" fill="none" aria-label="Estudio INA"><g stroke="#FBDE58" stroke-linecap="round">
+          <circle cx="100" cy="100" r="92" stroke-width="7" stroke-dasharray="398.21 179.84" transform="rotate(146 100 100)"/>
+          <circle cx="100" cy="100" r="78" stroke-width="7" stroke-dasharray="337.62 152.47" transform="rotate(146 100 100)"/>
+          <circle cx="100" cy="100" r="64" stroke-width="7" stroke-dasharray="277.02 125.11" transform="rotate(146 100 100)"/>
+          <circle cx="100" cy="100" r="50" stroke-width="7" stroke-dasharray="216.42 97.74" transform="rotate(146 100 100)"/>
+          <circle cx="100" cy="100" r="36" stroke-width="7" stroke-dasharray="155.82 70.37" transform="rotate(146 100 100)"/>
+        </g>
+        <text x="100" y="176" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="48" letter-spacing="1" fill="#B0141C">INA</text></svg>
+          <span>Estudio INA</span>
+        </div>
+        <p style="max-width:32ch; font-size:14px;">Defensa penal y asesoramiento migratorio en Buenos Aires, con alcance hacia procesos en Estados Unidos.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Áreas</h5>
+        <a href="https://claude.ai/artifact/RgbfvGP2fbWSH9vMsFHxik">Derecho Penal</a>
+        <a href="https://claude.ai/artifact/8RC1Jgt3n6tC5d3a9FwgM2">Migratorio Argentino</a>
+        <a href="https://claude.ai/artifact/GwH3h3skgN984B9N4A7jQY">Migratorio EE. UU.</a>
+      </div>
+      <div class="foot-col">
+        <h5>Estudio</h5>
+        <a href="https://claude.ai/artifact/STnBMJ6PBT6D6e2eNiujvw">Sobre nosotros</a>
+          <a href="#top">Prensa escrita</a>
+        <a href="https://claude.ai/artifact/TCuNnbEd3t199d7sKXHZSU">Prensa audiovisual</a>
+        <a href="https://claude.ai/artifact/L6DuxAPyjeozPcwwr8PY62">Contacto</a>
+      </div>
+      <div class="foot-col">
+        <h5>Seguinos</h5>
+        <a href="https://www.instagram.com/ina_estudio/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/channel/UCqBruPlW88hfTJI73VK5akA" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.facebook.com/EstudioJuridicoINA/" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Estudio Jurídico INA. Todos los derechos reservados.</span>
+      <a href="/politica-de-privacidad/">Política de privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://api.whatsapp.com/send/?phone=5491122778847&text=Hola+Estudio+INA%2C+necesito+asesoramiento" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>
+</a>
+
+<script>
+  var siteHeader = document.querySelector('header');
+  var onScroll = function(){
+    siteHeader.classList.toggle('is-scrolled', window.scrollY > 40);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+</body>
+</html>
