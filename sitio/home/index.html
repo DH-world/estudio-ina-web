@@ -208,18 +208,22 @@
   @media (max-width:820px){.values-grid{grid-template-columns:1fr;}}
 
   /* -- team -- */
-  .team-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
-  .team-card{border:1px solid var(--line); background:var(--paper); transition:box-shadow .15s, transform .15s;}
+  .team-grid{display:flex; flex-wrap:wrap; justify-content:center; gap:26px;}
+  .team-card{flex:0 1 calc((100% - 52px) / 3); border:1px solid var(--line); background:var(--paper); transition:box-shadow .15s, transform .15s;}
   .team-card:hover{box-shadow:0 18px 34px rgba(124,31,42,.1); transform:translateY(-3px);}
   .team-card .photo{aspect-ratio:1/1; background:linear-gradient(160deg,#8C2531,#4A1119); display:flex; align-items:center; justify-content:center; overflow:hidden;}
   .team-card .photo img{width:100%; height:100%; object-fit:cover; object-position:center 15%; display:block;}
+  .team-card .photo.logo{background:var(--paper); border-bottom:1px solid var(--line);}
+  .team-card .photo.logo img{object-fit:contain; padding:26px;}
   .team-card .photo .mono{font-family:'Fraunces',serif; font-size:38px; color:var(--gold-light); font-weight:700;}
   .team-card .info{padding:22px 24px;}
   .team-card h3{font-size:17px; margin-bottom:4px;}
   .team-card .role{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; color:var(--red); text-transform:uppercase; margin-bottom:10px;}
   .team-card p{font-size:13.5px; color:var(--muted);}
   .team-card .reg{display:block; font-size:12px; font-weight:600; color:var(--muted); margin:-4px 0 10px; letter-spacing:.02em;}
-  @media (max-width:820px){.team-grid{grid-template-columns:1fr; max-width:360px; margin:0 auto;}}
+  .team-more{text-align:center; margin-top:40px;}
+  @media (max-width:980px){.team-card{flex-basis:calc((100% - 26px) / 2);}}
+  @media (max-width:640px){.team-card{flex-basis:100%; max-width:360px;}}
 
   /* -- press -- */
   .press{background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
@@ -339,7 +343,7 @@
   <div class="nav">
     <a class="brand" href="#inicio">
       <img class="seal" src="estudio-ina-logo.png" alt="Estudio Jurídico INA">
-      <span class="name">Estudio Jurídico INA<small>Penal &amp; Migratorio · Bs. As.</small></span>
+      <span class="name">Estudio Jurídico INA<small>Penal &amp; Migratorio · Bs. As. · La Pampa · Córdoba</small></span>
     </a>
 
     <nav class="links" aria-label="Principal">
@@ -401,7 +405,7 @@
   <span class="arcs"><svg width="480" height="480" viewBox="0 0 480 480" fill="none"><circle cx="240" cy="240" r="140" stroke="#AD8636" stroke-width="1.2"/><circle cx="240" cy="240" r="180" stroke="#AD8636" stroke-width="1"/><circle cx="240" cy="240" r="220" stroke="#AD8636" stroke-width=".8"/></svg></span>
   <div class="wrap">
     <div class="hero-top">
-      <span class="folio on-dark">Estudio Jurídico INA — Buenos Aires</span>
+      <span class="folio on-dark">Estudio Jurídico INA — Buenos Aires · La Pampa · Córdoba</span>
       <h1>Su causa,<br><em>nuestra prioridad.</em></h1>
     </div>
     <div class="hero-rule"></div>
@@ -494,14 +498,15 @@
   <div class="wrap">
     <div class="head center">
       <span class="folio">Nuestro equipo</span>
-      <h2>Conocé a tus abogados</h2>
+      <h2>Un equipo en tres provincias</h2>
+      <p>Tres abogados en Buenos Aires y un titular al frente de cada sede en La Pampa y Córdoba, con el mismo criterio técnico en todas.</p>
     </div>
     <div class="team-grid">
       <div class="team-card">
         <div class="photo"><img src="deborah-huczek-team.jpg" alt="Dra. Déborah Huczek"></div>
         <div class="info">
           <h3>Dra. Déborah Huczek</h3>
-          <span class="role">Directora</span>
+          <span class="role">Directora · Buenos Aires</span>
           <span class="reg">Mat. T° 89 F° 526 · CPACF</span>
           <p>Dirige la estrategia penal y migratoria del estudio.</p>
         </div>
@@ -510,20 +515,41 @@
         <div class="photo"><img src="marcelo-madeo-abogado-penalista-supervision-casos-buenos-aires-854.webp" srcset="marcelo-madeo-abogado-penalista-supervision-casos-buenos-aires-480.webp 480w, marcelo-madeo-abogado-penalista-supervision-casos-buenos-aires-854.webp 854w" sizes="(max-width: 820px) 360px, 380px" width="854" height="1280" alt="Dr. Marcelo Madeo, abogado penalista a cargo de la supervisión de casos del Estudio Jurídico INA" loading="lazy" style="object-position:center top;"></div>
         <div class="info">
           <h3>Dr. Marcelo Madeo</h3>
-          <span class="role">Supervisión de casos</span>
+          <span class="role">Supervisión de casos · Buenos Aires</span>
           <span class="reg">Mat. T° 74 F° 872 · CPACF</span>
-          <p>Especializado en Derecho Penal, supervisa las causas del estudio en materia penal, contravencional, civil, laboral y migratoria.</p>
+          <p>Se graduó como abogado en la Universidad del Salvador con Diploma de Honor (2001) y se especializó en Derecho Penal en la Universidad Austral. Supervisa las causas del estudio en materia penal, contravencional, civil, laboral y migratoria.</p>
         </div>
       </div>
       <div class="team-card">
         <div class="photo"><img src="juan-pablo-dietsch-abogado-litigante-penal-buenos-aires-854.webp" srcset="juan-pablo-dietsch-abogado-litigante-penal-buenos-aires-480.webp 480w, juan-pablo-dietsch-abogado-litigante-penal-buenos-aires-854.webp 854w" sizes="(max-width: 820px) 360px, 380px" width="854" height="1280" alt="Dr. Juan Pablo Dietsch, abogado litigante penal del Estudio Jurídico INA en Buenos Aires" loading="lazy" style="object-position:center top;"></div>
         <div class="info">
           <h3>Dr. Juan Pablo Dietsch</h3>
-          <span class="role">Litigante</span>
+          <span class="role">Litigante · Buenos Aires</span>
           <span class="reg">Mat. T° 102 F° 216 · CPACF</span>
-          <p>Centra su práctica en litigios penales, con visión pragmática y foco en resultados.</p>
+          <p>Comenzó como practicante en el Juzgado Civil y Comercial N.º 9 de Mar del Plata. Tiene experiencia en expedientes de familia, civil, laboral, daños y perjuicios y contencioso-administrativo, y actúa como componedor amigable. Hoy centra su práctica en litigios penales, explicando con claridad las posibilidades reales de cada caso.</p>
         </div>
       </div>
+      <div class="team-card">
+        <div class="photo logo"><img src="ruggiero-y-asoc-logo-la-pampa.webp" alt="Logo de Ruggiero y Asoc., sede La Pampa de Estudio Jurídico INA" loading="lazy"></div>
+        <div class="info">
+          <h3>Dr. Álvaro Ruggiero</h3>
+          <span class="role">Titular · La Pampa</span>
+          <span class="reg">T° XI F° 58 · Colegio de Abogados de La Pampa</span>
+          <p>Abogado penalista y mediador judicial matriculado, titular de Ruggiero &amp; Asociados en Santa Rosa. Fue asesor letrado del Ministerio de Justicia y se especializó en litigación oral. Interviene en defensa penal compleja y en la representación de víctimas.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="photo"><img src="mariano-bentancour-abogado-penalista-cordoba.webp" width="440" height="440" alt="Dr. Mariano Bentancour, abogado penalista de la sede Córdoba de Estudio Jurídico INA" loading="lazy"></div>
+        <div class="info">
+          <h3>Dr. Mariano Enrique Bentancour</h3>
+          <span class="role">Titular · Córdoba</span>
+          <span class="reg">M.P. 1-43089 · Tomo 510, Folio 365</span>
+          <p>Abogado penalista egresado de la Universidad Nacional de Córdoba, con diplomatura en Litigación Oral Penal (UCC). Defiende imputados y representa víctimas y querellantes, con formación específica en falsas denuncias y delitos de género.</p>
+        </div>
+      </div>
+    </div>
+    <div class="team-more">
+      <a class="btn btn-ghost" href="https://claude.ai/artifact/STnBMJ6PBT6D6e2eNiujvw#sedes">Conocé todas las sedes</a>
     </div>
   </div>
 </section>
@@ -598,7 +624,7 @@
       <span class="folio on-dark">Contacto</span>
       <h2>Iniciá tu expediente</h2>
       <p class="lede">Contanos brevemente tu situación. Un abogado del estudio te responde dentro de las 24 horas hábiles para coordinar una primera consulta, presencial u online.</p>
-      <div class="info-row"><span class="k">Oficina</span><span class="v">Av. Corrientes 2763, Piso 6, Of. 11 — CP 1046, CABA</span></div>
+      <div class="info-row"><span class="k">Sede central</span><span class="v">Av. Corrientes 2763, Piso 6, Of. 11 — CP 1046, CABA</span></div>
       <div class="info-row"><span class="k">Teléfono</span><span class="v"><a href="tel:+541149640507">(011) 4964-0507</a></span></div>
       <div class="info-row"><span class="k">WhatsApp</span><span class="v"><a href="https://api.whatsapp.com/send/?phone=5491122778847&text=Hola+Estudio+INA%2C+necesito+asesoramiento" target="_blank" rel="noopener">+54 9 11 2277-8847</a></span></div>
       <div class="info-row"><span class="k">Email</span><span class="v"><a href="mailto:info@estudioina.com.ar">info@estudioina.com.ar</a></span></div>
@@ -629,7 +655,7 @@
       <div class="field"><label for="tel">Teléfono</label><input id="tel" type="tel" placeholder="+54 9 11 ...." required></div>
       <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="tu@email.com" required></div>
       <div class="field"><label for="msg">Contanos brevemente tu caso</label><textarea id="msg" placeholder="Escribí acá..."></textarea></div>
-      <div class="consent"><input id="consent" type="checkbox" required><label for="consent" style="text-transform:none; font-weight:400;">Acepto que Estudio INA me contacte para responder esta consulta, conforme a la <a href="#" style="text-decoration:underline;">política de privacidad</a>.</label></div>
+      <div class="consent"><input id="consent" type="checkbox" required><label for="consent" style="text-transform:none; font-weight:400;">Acepto que Estudio INA me contacte para responder esta consulta, conforme a la <a href="https://claude.ai/artifact/HuVSvxdsTp7AHY26YVMeZD" target="_blank" rel="noopener" style="text-decoration:underline;">política de privacidad</a>.</label></div>
       <button class="btn btn-primary" type="submit">Enviar consulta</button>
     </form>
   </div>
@@ -665,7 +691,7 @@
     </div>
     <div class="foot-bottom">
       <span>© 2026 Estudio Jurídico INA. Todos los derechos reservados.</span>
-      <a href="#">Política de privacidad</a>
+      <a href="https://claude.ai/artifact/HuVSvxdsTp7AHY26YVMeZD">Política de privacidad</a>
     </div>
   </div>
 </footer>
@@ -684,9 +710,5 @@
 </script>
 </body>
 </html>
-
-</body></html>
-
-</body></html>
 
 </body></html>

@@ -290,6 +290,23 @@
   .founder .press-chip{display:inline-flex; align-items:center; gap:10px; border:1px solid var(--line-on-dark); border-radius:var(--radius); padding:10px 16px; font-size:13px; color:var(--gold-light);}
   @media (max-width:900px){.founder-grid{grid-template-columns:1fr;} .credential{max-width:280px; margin:0 auto;}}
 
+  /* -- equipo penal -- */
+  .team-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+  .team-card{border:1px solid var(--line); background:var(--paper); transition:box-shadow .15s, transform .15s;}
+  .team-card:hover{box-shadow:0 18px 34px rgba(124,31,42,.1); transform:translateY(-3px);}
+  .team-card .photo{aspect-ratio:1/1; background:linear-gradient(160deg,#8C2531,#4A1119); overflow:hidden;}
+  .team-card .photo img{width:100%; height:100%; object-fit:cover; object-position:center top; display:block;}
+  .team-card .photo.logo{background:var(--paper); border-bottom:1px solid var(--line);}
+  .team-card .photo.logo img{object-fit:contain; padding:26px;}
+  .team-card .info{padding:22px 22px 24px;}
+  .team-card h3{font-size:16.5px; margin-bottom:4px; line-height:1.3;}
+  .team-card .role{display:block; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.08em; color:var(--red); text-transform:uppercase; margin-bottom:10px;}
+  .team-card .reg{display:block; font-size:12px; font-weight:600; color:var(--muted); margin:-4px 0 10px; letter-spacing:.02em;}
+  .team-card p{font-size:13.5px; color:var(--muted);}
+  .team-more{text-align:center; margin-top:40px;}
+  @media (max-width:1040px){.team-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:600px){.team-grid{grid-template-columns:1fr; max-width:360px; margin:0 auto;}}
+
   /* -- testimonials with seal -- */
   .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
   .testi-card{background:var(--paper); border:1px solid var(--line); padding:30px 28px; position:relative;}
@@ -382,7 +399,7 @@
   <div class="nav">
     <a class="brand" href="https://claude.ai/artifact/WQEQKzrdroQFUnxqcTZnap">
       <img class="seal" src="estudio-ina-logo.png" alt="Estudio Jurídico INA">
-      <span class="name">Estudio Jurídico INA<small>Penal &amp; Migratorio · Bs. As.</small></span>
+      <span class="name">Estudio Jurídico INA<small>Penal &amp; Migratorio · Bs. As. · La Pampa · Córdoba</small></span>
     </a>
 
     <nav class="links" aria-label="Principal">
@@ -402,7 +419,7 @@
           <a href="https://claude.ai/artifact/TCuNnbEd3t199d7sKXHZSU">Prensa audiovisual</a>
         </div>
       </div>
-      <a href="https://claude.ai/artifact/WQEQKzrdroQFUnxqcTZnap#contacto">Contacto</a>
+      <a href="https://claude.ai/artifact/L6DuxAPyjeozPcwwr8PY62">Contacto</a>
     </nav>
 
     <div class="nav-right">
@@ -410,7 +427,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.7a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.8 2z"/></svg>
         2277-8847
       </a>
-      <a class="btn btn-primary" href="#contacto">Consulta gratuita</a>
+      <a class="btn btn-primary" href="https://claude.ai/artifact/L6DuxAPyjeozPcwwr8PY62">Solicitar consulta</a>
       <input type="checkbox" id="mnav-toggle">
       <label class="burger" for="mnav-toggle" aria-label="Abrir menú">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -429,10 +446,11 @@
           <a href="https://claude.ai/artifact/8RC1Jgt3n6tC5d3a9FwgM2">— Migratorio Argentino</a>
         </div>
         <a href="https://claude.ai/artifact/STnBMJ6PBT6D6e2eNiujvw">Sobre nosotros</a>
-        <a href="https://claude.ai/artifact/WzJ2BH9nsdRgjf27m9KsQ7">Prensa</a>
-        <a href="#contacto">Contacto</a>
+        <a href="https://claude.ai/artifact/WzJ2BH9nsdRgjf27m9KsQ7">Prensa escrita</a>
+        <a href="https://claude.ai/artifact/TCuNnbEd3t199d7sKXHZSU">Prensa audiovisual</a>
+        <a href="https://claude.ai/artifact/L6DuxAPyjeozPcwwr8PY62">Contacto</a>
         <div class="mm-cta">
-          <a class="btn btn-primary" href="#contacto">Consulta gratuita</a>
+          <a class="btn btn-primary" href="https://claude.ai/artifact/L6DuxAPyjeozPcwwr8PY62">Solicitar consulta</a>
           <a class="btn btn-ghost" href="https://api.whatsapp.com/send/?phone=5491122778847&text=Hola+Estudio+INA%2C+necesito+asesoramiento" target="_blank" rel="noopener">Escribir por WhatsApp</a>
         </div>
       </div>
@@ -459,12 +477,12 @@
           <span>
             <span class="eyebrow">Nuestra especialidad</span>
             <span class="title">Especialistas en defensa contra falsas denuncias</span>
-            <span class="sub">Si lo acusaron falsamente, es nuestro trabajo todos los días. Escuchamos su caso sin costo.</span>
+            <span class="sub">Si lo acusaron falsamente, es nuestro trabajo todos los días. Escuchamos su caso.</span>
           </span>
         </div>
         <p class="lede">Si usted o un ser querido fue acusado de un delito o vio vulnerados sus derechos, merece una defensa de primer nivel. Somos especialistas en falsas denuncias: más de veinte años defendiendo casos complejos y de alto impacto, con estrategias innovadoras y el respaldo de peritos y expertos en múltiples disciplinas.</p>
         <div class="ctas">
-          <a class="btn btn-primary" href="#contacto">
+          <a class="btn btn-primary" href="https://claude.ai/artifact/L6DuxAPyjeozPcwwr8PY62">
             Solicitar consulta ahora
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
@@ -570,13 +588,13 @@
         <span class="tag">Representación de víctimas</span>
         <h3>Querellas — justicia sin impunidad</h3>
         <p>Defendemos a las víctimas con determinación, estrategia y compromiso absoluto. Ejercemos la querella asegurándonos de que su voz sea escuchada y de que los responsables enfrenten las consecuencias de sus actos.</p>
-        <a class="btn btn-ghost" href="#contacto">Solicitar consulta</a>
+        <a class="btn btn-ghost" href="https://claude.ai/artifact/L6DuxAPyjeozPcwwr8PY62">Solicitar consulta</a>
       </div>
       <div class="split-card">
         <span class="tag">Especialistas en falsas denuncias</span>
         <h3>Comprometidos con la justicia, dedicados a su libertad</h3>
         <p>¿Usted o un ser querido fue acusado de un delito penal o víctima de una falsa denuncia? Identificamos errores en la acusación, inconsistencias en las pruebas y oportunidades para fortalecer su defensa, con pleno respeto al principio de inocencia.</p>
-        <a class="btn btn-ghost" href="#contacto">Solicitar consulta</a>
+        <a class="btn btn-ghost" href="https://claude.ai/artifact/L6DuxAPyjeozPcwwr8PY62">Solicitar consulta</a>
       </div>
     </div>
   </div>
@@ -680,10 +698,61 @@
         <li>Doctoranda en Ciencias Jurídicas — Universidad Católica Argentina (UCA)</li>
         <li>Fundadora del Instituto DH Litigación Oral, con sede en Argentina y EE. UU.</li>
       </ul>
-      <a class="press-chip" href="https://www.lanacion.com.ar/" target="_blank" rel="noopener">
+      <a class="press-chip" href="https://claude.ai/artifact/WzJ2BH9nsdRgjf27m9KsQ7">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
         Consultada por La Nación sobre casos resonantes
       </a>
+    </div>
+  </div>
+</section>
+
+<section class="equipo" id="equipo">
+  <div class="wrap">
+    <div class="head center">
+      <span class="folio">Equipo penal</span>
+      <h2>Abogados penalistas en tres provincias</h2>
+      <p>Junto a la Dra. Huczek, el área penal del estudio se apoya en litigantes y en titulares de sede con actuación local en Buenos Aires, La Pampa y Córdoba.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="photo"><img src="marcelo-madeo-abogado-penalista-supervision-casos-buenos-aires-854.webp" srcset="marcelo-madeo-abogado-penalista-supervision-casos-buenos-aires-480.webp 480w, marcelo-madeo-abogado-penalista-supervision-casos-buenos-aires-854.webp 854w" sizes="(max-width: 600px) 360px, 280px" width="854" height="1280" alt="Dr. Marcelo Madeo, abogado penalista a cargo de la supervisión de casos del Estudio Jurídico INA" loading="lazy"></div>
+        <div class="info">
+          <h3>Dr. Marcelo Madeo</h3>
+          <span class="role">Supervisión de casos · Buenos Aires</span>
+          <span class="reg">Mat. T° 74 F° 872 · CPACF</span>
+          <p>Se graduó como abogado en la Universidad del Salvador con Diploma de Honor (2001) y se especializó en Derecho Penal en la Universidad Austral. Supervisa las causas del estudio en materia penal y contravencional, entre otras.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="photo"><img src="juan-pablo-dietsch-abogado-litigante-penal-buenos-aires-854.webp" srcset="juan-pablo-dietsch-abogado-litigante-penal-buenos-aires-480.webp 480w, juan-pablo-dietsch-abogado-litigante-penal-buenos-aires-854.webp 854w" sizes="(max-width: 600px) 360px, 280px" width="854" height="1280" alt="Dr. Juan Pablo Dietsch, abogado litigante penal del Estudio Jurídico INA en Buenos Aires" loading="lazy"></div>
+        <div class="info">
+          <h3>Dr. Juan Pablo Dietsch</h3>
+          <span class="role">Litigante · Buenos Aires</span>
+          <span class="reg">Mat. T° 102 F° 216 · CPACF</span>
+          <p>Con experiencia previa en expedientes de familia, civil, laboral y contencioso-administrativo, hoy centra su práctica en litigios penales, explicando con claridad las posibilidades reales de cada caso.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="photo logo"><img src="ruggiero-y-asoc-logo-la-pampa.webp" alt="Logo de Ruggiero y Asoc., sede La Pampa de Estudio Jurídico INA" loading="lazy"></div>
+        <div class="info">
+          <h3>Dr. Álvaro Ruggiero</h3>
+          <span class="role">Titular · La Pampa</span>
+          <span class="reg">T° XI F° 58 · Colegio de Abogados de La Pampa</span>
+          <p>Abogado penalista y mediador judicial matriculado, titular de Ruggiero &amp; Asociados en Santa Rosa. Se especializó en litigación oral e interviene en defensa penal compleja y en la representación de víctimas.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="photo"><img src="mariano-bentancour-abogado-penalista-cordoba.webp" width="440" height="440" alt="Dr. Mariano Bentancour, abogado penalista de la sede Córdoba de Estudio Jurídico INA" loading="lazy"></div>
+        <div class="info">
+          <h3>Dr. Mariano Enrique Bentancour</h3>
+          <span class="role">Titular · Córdoba</span>
+          <span class="reg">M.P. 1-43089 · Tomo 510, Folio 365</span>
+          <p>Abogado penalista egresado de la Universidad Nacional de Córdoba, con diplomatura en Litigación Oral Penal (UCC) y formación específica en falsas denuncias y delitos de género. Defiende imputados y representa víctimas y querellantes.</p>
+        </div>
+      </div>
+    </div>
+    <div class="team-more">
+      <a class="btn btn-ghost" href="https://claude.ai/artifact/STnBMJ6PBT6D6e2eNiujvw#sedes">Conocé todas las sedes</a>
     </div>
   </div>
 </section>
@@ -724,45 +793,7 @@
       <span>Consultas presenciales y virtuales</span>
       <span>Respuesta rápida y personalizada</span>
     </div>
-    <a class="btn btn-primary" href="#contacto">Solicitar consulta ahora</a>
-  </div>
-</section>
-
-<section class="contact" id="contacto">
-  <span class="arcs"><svg width="440" height="440" viewBox="0 0 440 440" fill="none"><circle cx="220" cy="220" r="130" stroke="#DEC07E" stroke-width="1"/><circle cx="220" cy="220" r="170" stroke="#DEC07E" stroke-width=".8"/></svg></span>
-  <div class="wrap contact-grid">
-    <div>
-      <span class="folio on-dark">Contacto</span>
-      <h2>Iniciá tu expediente</h2>
-      <p class="lede">Contanos brevemente tu situación —incluidas las falsas denuncias, nuestra especialidad— y un abogado del estudio te responde dentro de las 24 horas hábiles para coordinar una primera consulta, presencial u online.</p>
-      <div class="info-row"><span class="k">Oficina</span><span class="v">Av. Corrientes 2763, Piso 6, Of. 11 — CP 1046, CABA</span></div>
-      <div class="info-row"><span class="k">Teléfono</span><span class="v"><a href="tel:+541149640507">(011) 4964-0507</a></span></div>
-      <div class="info-row"><span class="k">WhatsApp</span><span class="v"><a href="https://api.whatsapp.com/send/?phone=5491122778847&text=Hola+Estudio+INA%2C+necesito+asesoramiento+en+una+causa+penal" target="_blank" rel="noopener">+54 9 11 2277-8847</a></span></div>
-      <div class="info-row"><span class="k">Email</span><span class="v"><a href="mailto:info@estudioina.com.ar">info@estudioina.com.ar</a></span></div>
-      <div class="map-frame">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13135.931238073817!2d-58.4046184!3d-34.6045962!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccaed484301a1%3A0x53f142adc0582449!2sEstudio%20Jur%C3%ADdico%20INA!5e0!3m2!1ses-419!2sar!4v1712866025154!5m2!1ses-419!2sar" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Estudio INA"></iframe>
-      </div>
-    </div>
-    <form class="intake" onsubmit="return false;">
-      <span class="folio">Formulario de contacto</span>
-      <h3>Hablá con un abogado penalista</h3>
-      <div class="field">
-        <label for="area">Tu situación es sobre</label>
-        <select id="area">
-          <option selected>Falsa denuncia</option>
-          <option>Derecho Penal</option>
-          <option>Migratorio Argentino</option>
-          <option>Querella / representación de víctima</option>
-          <option>Otra consulta</option>
-        </select>
-      </div>
-      <div class="field"><label for="nombre">Nombre y apellido</label><input id="nombre" type="text" placeholder="Tu nombre" required></div>
-      <div class="field"><label for="tel">Teléfono</label><input id="tel" type="tel" placeholder="+54 9 11 ...." required></div>
-      <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="tu@email.com" required></div>
-      <div class="field"><label for="msg">Contanos brevemente tu caso</label><textarea id="msg" placeholder="Escribí acá..."></textarea></div>
-      <div class="consent"><input id="consent" type="checkbox" required><label for="consent" style="text-transform:none; font-weight:400;">Acepto que Estudio INA me contacte para responder esta consulta, conforme a la <a href="#" style="text-decoration:underline;">política de privacidad</a>.</label></div>
-      <button class="btn btn-primary" type="submit">Enviar consulta</button>
-    </form>
+    <a class="btn btn-primary" href="https://claude.ai/artifact/L6DuxAPyjeozPcwwr8PY62">Solicitar consulta ahora</a>
   </div>
 </section>
 
@@ -774,7 +805,7 @@
           <img class="seal" src="estudio-ina-logo.png" alt="Estudio Jurídico INA">
           <span>Estudio INA</span>
         </div>
-        <p style="max-width:32ch; font-size:14px;">Especialistas en falsas denuncias, defensa penal y asesoramiento migratorio en Buenos Aires.</p>
+        <p style="max-width:32ch; font-size:14px;">Especialistas en falsas denuncias, defensa penal y asesoramiento migratorio con sedes en Buenos Aires, La Pampa y Córdoba.</p>
       </div>
       <div class="foot-col">
         <h5>Áreas</h5>
@@ -785,7 +816,7 @@
         <h5>Estudio</h5>
         <a href="https://claude.ai/artifact/STnBMJ6PBT6D6e2eNiujvw">Sobre nosotros</a>
         <a href="https://claude.ai/artifact/WzJ2BH9nsdRgjf27m9KsQ7">Prensa</a>
-        <a href="#contacto">Contacto</a>
+        <a href="https://claude.ai/artifact/L6DuxAPyjeozPcwwr8PY62">Contacto</a>
       </div>
       <div class="foot-col">
         <h5>Seguinos</h5>
@@ -796,7 +827,7 @@
     </div>
     <div class="foot-bottom">
       <span>© 2026 Estudio Jurídico INA. Todos los derechos reservados.</span>
-      <a href="#">Política de privacidad</a>
+      <a href="https://claude.ai/artifact/HuVSvxdsTp7AHY26YVMeZD">Política de privacidad</a>
     </div>
   </div>
 </footer>
