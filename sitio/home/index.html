@@ -779,13 +779,19 @@
 </a>
 
 <script>
-  // Al recargar, arrancar siempre desde el principio (sin restaurar el scroll anterior)
+  // Al cargar o recargar, arrancar siempre desde el principio de la página (barra superior incluida).
+  // scrollIntoView también desplaza el marco que contiene la página, a diferencia de window.scrollTo.
   if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
-  if (!location.hash) {
+  var goTop = function(){
+    if (location.hash && location.hash !== '#inicio') { return; }
     window.scrollTo(0, 0);
-    window.addEventListener('load', function(){ window.scrollTo(0, 0); });
-    window.addEventListener('pageshow', function(){ window.scrollTo(0, 0); });
-  }
+    var t = document.querySelector('.topbar');
+    if (t && t.scrollIntoView) { t.scrollIntoView({ block: 'start', behavior: 'instant' }); }
+  };
+  goTop();
+  window.addEventListener('DOMContentLoaded', goTop);
+  window.addEventListener('load', function(){ goTop(); setTimeout(goTop, 150); });
+  window.addEventListener('pageshow', goTop);
   var siteHeader = document.querySelector('header');
   var onScroll = function(){
     siteHeader.classList.toggle('is-scrolled', window.scrollY > 40);
