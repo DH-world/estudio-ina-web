@@ -20,7 +20,7 @@
     --gold-light:#DEC07E;
     --line:#E4D6BC;
     --line-on-dark:rgba(222,192,126,.28);
-    --max:1180px;
+    --max:1480px;
     --radius:2px;
   }
   *{box-sizing:border-box;}
@@ -93,7 +93,7 @@
   header.is-scrolled .brand .seal{width:34px; height:34px;}
   header.is-scrolled .brand .name small{opacity:0; max-height:0; margin-top:0; overflow:hidden;}
 
-  nav.links{display:flex; gap:6px; font-size:14.5px; font-weight:500; align-items:center;}
+  nav.links{white-space:nowrap; display:flex; gap:6px; font-size:14.5px; font-weight:500; align-items:center;}
   nav.links > a, .has-sub > button{
     padding:10px 14px; border-radius:var(--radius); color:var(--ink); background:none; border:none;
     font:inherit; cursor:pointer; display:inline-flex; align-items:center; gap:5px;
@@ -115,7 +115,7 @@
   .submenu a:hover{background:var(--panel); color:var(--red);}
   .submenu a[aria-current="page"]{color:var(--red); font-weight:700; background:var(--panel);}
   .nav-right{display:flex; align-items:center; gap:16px;}
-  .nav-phone{font-family:'IBM Plex Mono',monospace; font-size:13.5px; font-weight:600; color:var(--ink); display:flex; align-items:center; gap:8px;}
+  .nav-phone{white-space:nowrap; font-family:'IBM Plex Mono',monospace; font-size:13.5px; font-weight:600; color:var(--ink); display:flex; align-items:center; gap:8px;}
   .nav-phone svg{width:15px; height:15px; color:var(--red);}
   .burger{display:none; background:none; border:1.5px solid var(--ink); border-radius:var(--radius); width:42px; height:42px; align-items:center; justify-content:center; cursor:pointer;}
   .burger svg{width:19px; height:19px;}
