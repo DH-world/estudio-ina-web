@@ -176,6 +176,27 @@
   .area-card:hover .go svg{transform:translateX(3px);}
     @media (max-width:600px){.areas-grid{grid-template-columns:1fr;}}
 
+  /* -- casos de alto impacto -- */
+  .case-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-on-dark); border:1px solid var(--line-on-dark);}
+  .case-card{
+    background:var(--red-deep); padding:36px 30px; position:relative; overflow:hidden;
+    min-height:460px; display:flex; flex-direction:column; justify-content:flex-end;
+  }
+  .case-card.has-photo::before{
+    content:""; position:absolute; top:0; left:0; right:0; aspect-ratio:4/3; z-index:0; pointer-events:none;
+    background:
+      linear-gradient(180deg, rgba(74,17,25,.40) 0%, rgba(74,17,25,.62) 100%),
+      var(--photo) 30% top/cover no-repeat;
+    -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 45%, transparent 100%);
+            mask-image:linear-gradient(180deg, #000 0%, #000 45%, transparent 100%);
+  }
+  .case-card > *{position:relative; z-index:1;}
+  .case-card .outcome{font-family:'Fraunces',serif; font-size:25px; color:var(--gold-light); font-weight:700; display:block; margin-bottom:14px; line-height:1.25;}
+  .case-card h3{color:var(--paper); font-size:15.5px; margin-bottom:10px; font-family:'IBM Plex Mono',monospace; letter-spacing:.03em; font-weight:600;}
+  .case-card p{color:#C7CBD4; font-size:13.5px; line-height:1.6;}
+  .casos-more{text-align:center; margin-top:40px;}
+  @media (max-width:900px){.case-grid{grid-template-columns:1fr;} .case-card{min-height:380px;}}
+
   /* -- founder / credential card -- */
   .founder{background:var(--red-deep); color:#EFDFC8; position:relative; overflow:hidden;}
   .founder .arcs{bottom:-140px; left:-140px; opacity:.5;}
@@ -444,6 +465,36 @@
   </div>
 </section>
 
+<section class="casos" id="casos">
+  <div class="wrap">
+    <div class="head center">
+      <span class="folio">Casos de alto impacto</span>
+      <h2>Resultados que marcan precedente</h2>
+      <p>Nuestra trayectoria nos ha permitido llevar adelante casos emblemáticos que dejaron huella en la justicia argentina, muchos de ellos centrados en desmontar falsas denuncias.</p>
+    </div>
+    <div class="case-grid">
+      <div class="case-card has-photo" style="--photo:image-set(url('caso-alvarez-albarracin-audiencia-480.webp') 1x, url('caso-alvarez-albarracin-audiencia-642.webp') 2x);">
+        <span class="outcome">50 años de prisión</span>
+        <h3>Caso Álvarez Albarracín</h3>
+        <p>Condena a 50 años de prisión, una de las penas temporales más altas dictadas en el país, en representación de las víctimas.</p>
+      </div>
+      <div class="case-card has-photo" style="--photo:url('caso-lin-wan-biao-absolucion-360.webp');">
+        <span class="outcome">Absolución en juicio oral</span>
+        <h3>Caso Lin Wan Biao</h3>
+        <p>Absolución de personas acusadas falsamente de delitos transnacionales: un caso paradigmático de nuestra especialidad en falsas denuncias.</p>
+      </div>
+      <div class="case-card has-photo" style="--photo:image-set(url('caso-baez-cosme-condena-480.webp') 1x, url('caso-baez-cosme-condena-960.webp') 2x);">
+        <span class="outcome">Condena efectiva</span>
+        <h3>Caso Báez Cosme</h3>
+        <p>Encierro de narcotraficantes y criminales peligrosos retirados de las calles.</p>
+      </div>
+    </div>
+    <div class="casos-more">
+      <a class="btn btn-ghost" href="https://claude.ai/artifact/RgbfvGP2fbWSH9vMsFHxik">Ver Derecho Penal</a>
+    </div>
+  </div>
+</section>
+
 <section class="founder" id="nosotros">
   <span class="arcs"><svg width="520" height="520" viewBox="0 0 520 520" fill="none"><circle cx="260" cy="260" r="160" stroke="#DEC07E" stroke-width="1"/><circle cx="260" cy="260" r="200" stroke="#DEC07E" stroke-width=".8"/><circle cx="260" cy="260" r="240" stroke="#DEC07E" stroke-width=".6"/></svg></span>
   <div class="wrap founder-grid">
@@ -554,7 +605,7 @@
     </div>
     <div class="team-grid">
       <div class="team-card">
-        <div class="photo"><img src="pablo-soares-de-lima-perito-psicologo-forense-900.webp" srcset="pablo-soares-de-lima-perito-psicologo-forense-480.webp 480w, pablo-soares-de-lima-perito-psicologo-forense-900.webp 900w" sizes="(max-width: 640px) 360px, 380px" width="900" height="900" alt="Lic. Pablo Soares de Lima, perito psicólogo de parte que asesora al Estudio Jurídico INA" loading="lazy"></div>
+        <div class="photo"><img src="pablo-soares-de-lima-perito-psicologo-forense-854.webp" srcset="pablo-soares-de-lima-perito-psicologo-forense-480.webp 480w, pablo-soares-de-lima-perito-psicologo-forense-854.webp 854w" sizes="(max-width: 640px) 360px, 380px" width="854" height="1282" alt="Lic. Pablo Soares de Lima, perito psicólogo de parte que asesora al Estudio Jurídico INA" loading="lazy" style="object-position:center top;"></div>
         <div class="info">
           <h3>Lic. Pablo Soares de Lima</h3>
           <span class="role">Perito psicólogo de parte</span>
