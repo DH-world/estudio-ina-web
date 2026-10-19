@@ -779,6 +779,13 @@
 </a>
 
 <script>
+  // Al recargar, arrancar siempre desde el principio (sin restaurar el scroll anterior)
+  if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+  if (!location.hash) {
+    window.scrollTo(0, 0);
+    window.addEventListener('load', function(){ window.scrollTo(0, 0); });
+    window.addEventListener('pageshow', function(){ window.scrollTo(0, 0); });
+  }
   var siteHeader = document.querySelector('header');
   var onScroll = function(){
     siteHeader.classList.toggle('is-scrolled', window.scrollY > 40);
