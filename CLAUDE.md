@@ -28,7 +28,8 @@ Si un archivo de `sitio/` difiere del Artifact, gana el Artifact.
 | Prensa escrita | https://claude.ai/artifact/WzJ2BH9nsdRgjf27m9KsQ7 |
 | Prensa audiovisual | https://claude.ai/artifact/TCuNnbEd3t199d7sKXHZSU |
 | Contacto | https://claude.ai/artifact/L6DuxAPyjeozPcwwr8PY62 |
-| Juicio oral, Migratorio EEUU, Política de privacidad | (pendiente: completar URL) |
+| Política de privacidad | https://claude.ai/artifact/HuVSvxdsTp7AHY26YVMeZD |
+| Juicio oral, Migratorio EEUU | (pendiente: completar URL) |
 
 ## Estilo / contenido
 - Español rioplatense (es-AR). Sin promesas de resultado ("garantizamos", "ganamos") por políticas de Google Ads.
