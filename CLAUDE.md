@@ -36,7 +36,7 @@ Todos los cambios se hacen en `sitio/` y se suben a este repo (commit + push a `
 - Imágenes: usar el skill `insertar-imagen-web`.
 
 ## Pendientes conocidos
-- Falta la imagen `control-migratorio-aeropuerto-argentinos-1167.webp` (fondo del encabezado de Migratorio Argentino).
+- La imagen de fondo del encabezado de Migratorio (`control-migratorio-aeropuerto-argentinos-1167.webp`) mide solo 644 px de ancho; si se ve pixelada, reemplazar por una de al menos 1600 px.
 
 ## _archivo-prototipos/
 Borradores viejos. Solo referencia; no editar ni publicar desde ahí.
