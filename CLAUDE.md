@@ -1,39 +1,42 @@
 # Estudio Jurídico INA — sitio web
 
 ## Regla principal
-El sitio de INA vive en **Artifacts de claude.ai**. El Artifact publicado es la ÚNICA fuente de verdad.
-Los archivos .html locales NO son el sitio: si edito uno, el sitio no cambia.
+Desde 2026-11-03 la fuente de verdad es **este repositorio**, carpeta `sitio/`.
+Los Artifacts de claude.ai quedan como historial: NO se editan ni se republican, y pueden estar desactualizados.
+Todos los cambios se hacen en `sitio/` y se suben a este repo (commit + push a `main`).
 
-## Carpeta `sitio/` (espejo en Git)
-`sitio/<página>/index.html` + imágenes es una COPIA de cada Artifact, bajada el 2026-10-13 para tener historial en Git.
-Sentido único: **Artifact → carpeta**. Nunca editar `sitio/` a mano esperando que cambie la web.
-Después de publicar un cambio en un Artifact, actualizar la copia (leer el Artifact con `path`) y hacer un commit.
-Si un archivo de `sitio/` difiere del Artifact, gana el Artifact.
+## Estructura de `sitio/`
+- `sitio/index.html` es la home (URL: estudioina.com.ar). Sus imágenes están en `sitio/`.
+- Cada otra página vive en su carpeta: `sitio/<página>/index.html` + sus imágenes. La carpeta define la URL (importa para SEO: no renombrar sin avisar).
+- Enlaces entre páginas: SIEMPRE relativos (`../penal/`, `../#contacto`; desde la home `penal/`). Nunca a claude.ai/artifact.
+- WordPress, si se mantiene, va en una carpeta interna que el desarrollador (Gustavo) agrega al `.gitignore`. No tocar esa carpeta.
+- Los enlaces de Prensa escrita a `estudioina.com.ar/<nota>/` apuntan a WordPress; actualizarlos cuando Gustavo pase las URLs nuevas.
 
 ## Cómo hacer cualquier cambio
-1. Leer el Artifact actual con `Artifact action:"read"` y la URL de la tabla de abajo (nunca partir de memoria ni de un .html viejo).
-2. Escribir el HTML modificado en el scratchpad (carpeta temporal), NO en Downloads ni en el Escritorio.
-3. Republicar con `Artifact` pasando `url:` de la página (así se actualiza el mismo link; sin `url` se crea uno nuevo y se rompe el menú).
-4. Confirmar al usuario con el link. Si no se publicó, decirlo.
-- Nunca crear archivos .html en Downloads.
-- Si el cambio toca el menú, el footer o los datos de contacto, hay que aplicarlo en TODAS las páginas de la tabla.
+1. Editar el HTML directamente en `sitio/`.
+2. Si el cambio toca el menú, el footer o los datos de contacto, aplicarlo en TODAS las páginas de la tabla.
+3. Verificar que no queden enlaces rotos (hrefs, imágenes, anchors) antes de subir.
+4. Commit y push a `main`. Confirmar a Deborah qué se subió.
 
-## Páginas (Artifact = fuente)
-| Página | URL |
+## Páginas
+| Página | Ruta |
 |---|---|
-| Home | https://claude.ai/artifact/WQEQKzrdroQFUnxqcTZnap |
-| Derecho Penal | https://claude.ai/artifact/RgbfvGP2fbWSH9vMsFHxik |
-| Migratorio Argentino | https://claude.ai/artifact/8RC1Jgt3n6tC5d3a9FwgM2 |
-| Sobre nosotros | https://claude.ai/artifact/STnBMJ6PBT6D6e2eNiujvw |
-| Prensa escrita | https://claude.ai/artifact/WzJ2BH9nsdRgjf27m9KsQ7 |
-| Prensa audiovisual | https://claude.ai/artifact/TCuNnbEd3t199d7sKXHZSU |
-| Contacto | https://claude.ai/artifact/L6DuxAPyjeozPcwwr8PY62 |
-| Política de privacidad | https://claude.ai/artifact/HuVSvxdsTp7AHY26YVMeZD |
-| Juicio oral, Migratorio EEUU | (pendiente: completar URL) |
+| Home | `sitio/index.html` |
+| Derecho Penal | `sitio/penal/` |
+| Migratorio Argentino | `sitio/migratorio-argentino/` |
+| Sobre nosotros | `sitio/sobre-nosotros/` |
+| Prensa escrita | `sitio/prensa-escrita/` |
+| Prensa audiovisual | `sitio/prensa-audiovisual/` |
+| Contacto | `sitio/contacto/` |
+| Política de privacidad | `sitio/politica-de-privacidad/` |
+| Juicio oral, Migratorio EEUU | (pendiente: crear página) |
 
 ## Estilo / contenido
 - Español rioplatense (es-AR). Sin promesas de resultado ("garantizamos", "ganamos") por políticas de Google Ads.
 - Imágenes: usar el skill `insertar-imagen-web`.
 
+## Pendientes conocidos
+- Falta la imagen `control-migratorio-aeropuerto-argentinos-1167.webp` (fondo del encabezado de Migratorio Argentino).
+
 ## _archivo-prototipos/
-Borradores viejos movidos desde Downloads. Solo referencia; no editar ni publicar desde ahí.
+Borradores viejos. Solo referencia; no editar ni publicar desde ahí.
