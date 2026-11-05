@@ -10,7 +10,8 @@ Todos los cambios se hacen en `sitio/` y se suben a este repo (commit + push a `
 - Cada otra página vive en su carpeta: `sitio/<página>/index.html` + sus imágenes. La carpeta define la URL (importa para SEO: no renombrar sin avisar).
 - Enlaces entre páginas: SIEMPRE relativos (`../penal/`, `../#contacto`; desde la home `penal/`). Nunca a claude.ai/artifact.
 - WordPress, si se mantiene, va en una carpeta interna que el desarrollador (Gustavo) agrega al `.gitignore`. No tocar esa carpeta.
-- Los enlaces de Prensa escrita a `estudioina.com.ar/<nota>/` apuntan a WordPress; actualizarlos cuando Gustavo pase las URLs nuevas.
+- WordPress vive en `estudioina.com.ar/wp/` (solo reservas y prensa). Los enlaces a notas de Prensa escrita son `https://estudioina.com.ar/wp/<nota>/`, y las páginas de Prensa del menú/footer apuntan a `https://estudioina.com.ar/wp/prensa-escrita` y `/wp/prensa-audiovisual`. Botón de reservas: `https://estudioina.com.ar/wp/producto/reservar-una-consulta/`.
+- `sitio/prensa-escrita/` y `sitio/prensa-audiovisual/` ya no están enlazadas desde el sitio (las reemplaza WordPress).
 
 ## Cómo hacer cualquier cambio
 1. Editar el HTML directamente en `sitio/`.
