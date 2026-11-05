@@ -11,7 +11,7 @@ Todos los cambios se hacen en `sitio/` y se suben a este repo (commit + push a `
 - Enlaces entre páginas: SIEMPRE relativos (`../penal/`, `../#contacto`; desde la home `penal/`). Nunca a claude.ai/artifact.
 - WordPress, si se mantiene, va en una carpeta interna que el desarrollador (Gustavo) agrega al `.gitignore`. No tocar esa carpeta.
 - WordPress vive en `estudioina.com.ar/wp/` (solo reservas y prensa). Los enlaces a notas de Prensa escrita son `https://estudioina.com.ar/wp/<nota>/`, y las páginas de Prensa del menú/footer apuntan a `https://estudioina.com.ar/wp/prensa-escrita` y `/wp/prensa-audiovisual`. Botón de reservas: `https://estudioina.com.ar/wp/producto/reservar-una-consulta/`.
-- `sitio/prensa-escrita/` y `sitio/prensa-audiovisual/` ya no están enlazadas desde el sitio (las reemplaza WordPress).
+- Las páginas HTML de Prensa escrita y audiovisual se eliminaron de `sitio/` (2026-11-05) porque las reemplaza WordPress; quedan en el historial de Git (commit `dcbfffb` y anteriores).
 
 ## Cómo hacer cualquier cambio
 1. Editar el HTML directamente en `sitio/`.
